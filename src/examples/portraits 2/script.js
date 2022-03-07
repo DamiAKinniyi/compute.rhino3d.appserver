@@ -320,7 +320,7 @@ function onSend(){
         reader = new FileReader();
         reader.readAsDataURL(image.files[0]);
         
-        //console.log(reader.result)
+        console.log(reader.result)
         reader.onload = function (event) {
             //var dataUrl = event.target.result; 
             //let imgs = document.createElement("img")
