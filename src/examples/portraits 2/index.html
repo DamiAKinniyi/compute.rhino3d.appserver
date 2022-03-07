@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portraits</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <div id="loader2" ><p></p></div>
+    </div>
+    <div id="container2">
+        <div id="controlbox">
+            <div class="wrapper">
+               <h3 id ="header">Make A Portrait</h3>
+            </div>
+            <div class="wrapper">
+                <form>
+                        <label class="select-image-button" for="myImage">Select Image</label>
+                        <input type="file" id="myImage" name="myImage" accept = "image/png, image/jpeg" style="opacity: 0;">
+                        <div class="image_preview">Image Preview</div><br>
+                        <input type="button" class="select-image-button" id="submit" value="Upload">    
+                </form>
+               
+            </div>
+
+            <div class="wrapper">
+                <p>Image Parameters</p><br>                   
+                <label for="width">width</label><br>
+                <input id="width" name="width" type="range" step="1" min="30" max="100" value="60"><br>
+                <label for="height">height</label><br>
+                <input name="height" id="height" type="range" step="1" min="30" max="100" value="40"><br> 
+                <label for="clarity">clarity</label><br>
+                <input name="clarity" id="clarity" type="range" step="0.01" min="0.2" max="1" value="0.4"><br> 
+                <label for="abstraction">abstraction</label><br>
+                <input name="abstraction" id="abstraction" type="range" step="0.01" min="0" max="1" value="0"><br> <br>
+                <label>Invert</label>
+                <button alt="0" class="button" id="false">False</button>
+                <button alt="1"class="button" id="true">True</button><br><br>
+                <label>Pixels</label>
+                <button alt="0"class="button" id="dots">Dots</button>
+                <button alt="1"class="button" id="boxes">Boxes</button><br><br>
+                <label>Mode</label>
+                <button alt="0"class="button" id="coloured">Coloured</button>
+                <button alt="1"class="button" id="monochrome">Monochrome</button>
+            </div>
+            
+        </div>
+        
+    </div>
+
+    <div id="landing-page">
+
+        <div id="portraits"><p>P</p></div>
+        <div id="portraits"><p>O</p></div>
+        <div id="portraits"><p>R</p></div>
+        <div id="portraits"><p>T</p></div>
+        <div id="loader"><p>R</p></div>
+        <div id="portraits"><p>A</p></div>
+        <div id="portraits"><p>I</p></div>
+        <div id="portraits"><p>T</p></div>
+        <div id="portraits"><p>S</p></div>
+    </div>
+
+
+
+
+
+    <script src="script.js" type="module"></script>
+</body>
+</html>
