@@ -97,6 +97,8 @@ abstraction = document.getElementById("abstraction")
 abstraction.addEventListener('click', onSliderChange,false)
 abstraction.addEventListener('touchend', onSliderChange,false)
 
+//Start ImageChange and Image Preview//
+
 function imageChange(){
     console.log(image.files)
     console.log(image.files[0])
@@ -115,8 +117,13 @@ function imageChange(){
         updateImageDisplay()
     }  
     send.disabled = false
-    //compute()
 }
+
+const fileTypes = ["image/png", "image/jpeg"];
+
+function validFileType(file) {
+    return fileTypes.includes(file.type);
+  }
 
 function updateImageDisplay(){
     
@@ -132,11 +139,6 @@ function updateImageDisplay(){
         console.log(image2)
         //filepath = cleanerpath
 }
-const fileTypes = ["image/png", "image/jpeg"];
-
-function validFileType(file) {
-    return fileTypes.includes(file.type);
-  }
 
 let send = document.getElementById('submit');
 send.addEventListener("click", onSend);
