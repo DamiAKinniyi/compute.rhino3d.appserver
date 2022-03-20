@@ -21,16 +21,18 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.126.0/build/three.m
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/controls/OrbitControls.js'
 import { Rhino3dmLoader } from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/loaders/3DMLoader.js'
 import rhino3dm from 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/rhino3dm.module.js'
+import { Line, LineCylinderIntersection, LineSphereIntersection } from 'rhino3dm'
 
 // set up loader for converting the results to threejs
 const loader = new Rhino3dmLoader()
 loader.setLibraryPath( 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/' )
 
 // initialise 'data' object that will be used by compute()
-const data = {
+/*const data = {
   definition: 'Portraits 3.gh',
   inputs: getInputs()
-}
+}*/
+
 
 // globals
 let rhino, doc
@@ -39,7 +41,7 @@ rhino3dm().then(async m => {
     rhino = m
 
     init()
-    compute()
+    //compute()
 })
 
 const downloadButton = document.getElementById("downloadButton")
@@ -49,11 +51,137 @@ downloadButton.onclick = download
  //                            HELPER  FUNCTIONS                            //
 /////////////////////////////////////////////////////////////////////////////
 
+
+
+//Set up Slider Events
+//Declare sliders//
+//Set up Image Selection and Preview--------------------------------------//
+let image, image2, reader, imageAddress, filepath;
+let width, height, scale, resolution, colormode, invert, pixels, abstraction, dots, boxes, plines, displacement, distortion;
+
+image = document.getElementById("myImage")
+const imagePreview = document.getElementsByClassName("image_preview")[0];
+image.addEventListener('change', imageChange);
+
+width = document.getElementById("width")
+width.addEventListener('click',  onSliderChange,false)
+width.addEventListener('touchend',  onSliderChange,false)
+
+height = document.getElementById("height")
+height.addEventListener('click', onSliderChange,false)
+height.addEventListener('touchend', onSliderChange,false)
+
+scale = document.getElementById("scale")
+scale.addEventListener('click', onSliderChange,false)
+scale.addEventListener('touchend', onSliderChange,false)
+
+resolution = document.getElementById("resolution")
+resolution.addEventListener('click', onSliderChange,false)
+resolution.addEventListener('touchend', onSliderChange,false)
+
+colormode = document.getElementById("colormode")
+colormode.addEventListener(('click', onSliderChange,false))
+
+invert = document.getElementById("invert")
+invert.addEventListener(('click', onSliderChange,false))
+
+dots = document.getElementById("dots")
+dots.addEventListener("click", onClick)
+boxes = document.getElementById("boxes")
+boxes.addEventListener("click", onClick)
+plines = document.getElementById("plines")
+plines.addEventListener("click", onClick)
+pixels = 0
+
+abstraction = document.getElementById("abstraction")
+abstraction.addEventListener('click', onSliderChange,false)
+abstraction.addEventListener('touchend', onSliderChange,false)
+
+function imageChange(){
+    console.log(image.files)
+    console.log(image.files[0])
+    console.log(imagePreview)
+    while(imagePreview.firstChild){
+        console.log(imagePreview.firstChild)
+        console.log(imagePreview.innerHTML)
+        imagePreview.removeChild(imagePreview.firstChild)
+    }
+    if (image.files.length === 0){
+        alert('No Image Selected')
+        imagePreview.innerHTML="No Image Selected"
+        return      
+    }else{
+        alert('you have changed the image')
+        updateImageDisplay()
+    }  
+    send.disabled = false
+    //compute()
+}
+
+function updateImageDisplay(){
+    
+    image2 = document.createElement('img');
+    imagePreview.appendChild(image2);
+    if(validFileType(image.files[0])){
+        imageAddress = URL.createObjectURL(image.files[0])}
+        image2.src= imageAddress
+        //let cleanerpath = imageAddress.substring(10)/*replace('-','+')*/
+        //cleanerpath = cleanerpath.replace('_', ('/'))
+        console.log(image.files[0])
+        image2.alt= image.files[0].name
+        console.log(image2)
+        //filepath = cleanerpath
+}
+const fileTypes = ["image/png", "image/jpeg"];
+
+function validFileType(file) {
+    return fileTypes.includes(file.type);
+  }
+
+let send = document.getElementById('submit');
+send.addEventListener("click", onSend);
+
+function onSend(){
+    //show spinner
+    document.getElementById('container').style.display = 'flex';
+
+    if (image.files && image.files[0]) {
+        var fileSize;
+        reader = new FileReader();
+        reader.readAsDataURL(image.files[0]);
+        
+        console.log(reader.result)
+        reader.onload = function (event) {
+            //var dataUrl = event.target.result; 
+            //let imgs = document.createElement("img")
+            //imgs.src = dataUrl
+            //fileSize = image.files[0].size
+            //filepath = reader.result
+            let fpath = reader.result;
+            console.log(fpath)
+            var cleanerPath = fpath.substring(23)
+            //cleanerPath = cleanerPath.replace('-','+')
+            //cleanerPath = cleanerPath.replace('_', '/')
+            filepath = cleanerPath
+            console.log (filepath)
+            compute()
+            
+
+            
+        };
+       reader.onerror = function(event) {
+           console.error("File could not be read! Code " + event.target.error.code);
+       };
+
+                     
+       reader.onloadend = function() {
+           alert('Done')
+       }
 /**
  * Gets <input> elements from html and sets handlers
  * (html is generated from the grasshopper definition)
  */
-function getInputs() {
+/*function getInputs() {
   const inputs = {}
   for (const input of document.getElementsByTagName('input')) {
     switch (input.type) {
@@ -74,8 +202,8 @@ function getInputs() {
         break
     }
   }
-  return inputs
-}
+    return inputs
+}*/
 
 // more globals
 let scene, camera, renderer, controls
@@ -124,7 +252,7 @@ function init() {
  * Call appserver
  */
 async function compute() {
-  // construct url for GET /solve/definition.gh?name=value(&...)
+ /* // construct url for GET /solve/definition.gh?name=value(&...)
   const url = new URL('/solve/' + data.definition, window.location.origin)
   Object.keys(data.inputs).forEach(key => url.searchParams.append(key, data.inputs[key]))
   console.log(url.toString())
@@ -143,7 +271,45 @@ async function compute() {
 
   } catch(error) {
     console.error(error)
-  }
+  }*/
+    showSpinner(true);
+  
+    // initialise 'data' object that will be used by compute()
+    const data = {
+      definition: definition,
+      inputs: {
+        ImageFile: filepath,
+        Width:width.valueAsNumber,
+        Height:height.valueAsNumber,
+        Scale:scale.valueAsNumber,
+        Resolution:resolution.valueAsNumber,
+        Invert:invert.checked,
+        Monochrome: colormode.checked,
+        Pixels: pixels,
+        Abstraction: abstraction.valueAsNumber,
+        Displacement: displacement.valueAsNumber
+      },
+    };
+  
+    console.log(data.inputs);
+  
+    const request = {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    };
+  
+    try {
+      const response = await fetch("/solve", request);
+  
+      if (!response.ok) throw new Error(response.statusText);
+  
+      const responseJson = await response.json();
+      collectResults(responseJson);
+    } catch (error) {
+      console.error(error);
+    }
+
 }
 
 /**
@@ -233,6 +399,27 @@ function decodeItem(item) {
  * Called when a slider value changes in the UI. Collect all of the
  * slider values and call compute to solve for a new scene
  */
+
+
+     
+
+
+
+///*
+
+        
+        //console.log(filepath)
+        
+    }
+    //console.log(dataUrl)
+    //console.log(reader)
+    //console.log(reader.result)
+    
+    send.disabled = true
+    
+
+}
+//*/
 function onSliderChange () {
   showSpinner(true)
   // get slider values
@@ -250,12 +437,15 @@ function onSliderChange () {
       break
     }
   }
-  let filepath = 
-  inputs.ImageFile = filepath;
-  return inputs
-  data.inputs = inputs
-
   compute()
+}
+
+function onClick(e){
+    //show spinner
+    document.getElementById('container').style.display = 'flex';
+
+    pixels = e.target.getAttribute('alt');   
+    compute()
 }
 
 /**
