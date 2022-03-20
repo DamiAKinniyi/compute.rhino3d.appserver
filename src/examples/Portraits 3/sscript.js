@@ -99,7 +99,7 @@ abstraction.addEventListener('touchend', onSliderChange,false)
 
 //Start ImageChange and Image Preview//
 
-
+const fileTypes = ["image/png", "image/jpeg"];
 
 function imageChange(){
     console.log(image.files)
@@ -136,7 +136,7 @@ function updateImageDisplay(){
         //filepath = cleanerpath
 }
 
-const fileTypes = ["image/png", "image/jpeg"];
+
 
 function validFileType(file) {
     return fileTypes.includes(file.type);
