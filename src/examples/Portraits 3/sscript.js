@@ -99,12 +99,7 @@ abstraction.addEventListener('touchend', onSliderChange,false)
 
 //Start ImageChange and Image Preview//
 
-const fileTypes = ["image/png", "image/jpeg"];
 
-function validFileType(file) {
-    return fileTypes.includes(file.type);
-
-}
 
 function imageChange(){
     console.log(image.files)
@@ -126,9 +121,6 @@ function imageChange(){
     send.disabled = false
 }
 
-
- 
-
 function updateImageDisplay(){
     
     image2 = document.createElement('img');
@@ -142,6 +134,12 @@ function updateImageDisplay(){
         image2.alt= image.files[0].name
         console.log(image2)
         //filepath = cleanerpath
+}
+
+const fileTypes = ["image/png", "image/jpeg"];
+
+function validFileType(file) {
+    return fileTypes.includes(file.type);
 }
 
 let send = document.getElementById('submit');
