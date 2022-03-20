@@ -182,9 +182,18 @@ function init() {
  */
 async function compute() {
   // construct url for GET /solve/definition.gh?name=value(&...)
-  const url = new URL('/solve/' + data.definition, window.location.origin)
+  /*const url = new URL('/solve/' + data.definition, window.location.origin)
   Object.keys(data.inputs).forEach(key => url.searchParams.append(key, data.inputs[key]))
-  console.log(url.toString())
+  console.log(url.toString())*/
+
+  const request = {
+    'method':'POST',
+    'body': JSON.stringify(data),
+    'headers': {'Content-Type': 'application/json'}
+  }
+
+  try {
+    const response = await fetch('/solve', request)
   
   try {
     const response = await fetch(url)
