@@ -143,7 +143,7 @@ async function compute() {
     param7.append([0],[colorMode])
     console.log(param7)
 
-    const param8 = new RhinoCompute.Grasshopper.DataTree('Image File')
+    const param8 = new RhinoCompute.Grasshopper.DataTree('ImageFile')
     console.log(filepath)
     param8.append([0],[filepath])
     console.log(param8)
