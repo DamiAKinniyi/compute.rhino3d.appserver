@@ -138,7 +138,7 @@ function commonSolve (req, res, next){
         trees.push(param)
       }
     }
-
+    console.log(trees)
     let fullUrl = req.protocol + '://' + req.get('host')
     let definitionPath = `${fullUrl}/definition/${definition.id}`
     const timePreComputeServerCall = performance.now()
