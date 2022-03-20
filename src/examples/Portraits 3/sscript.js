@@ -1,76 +1,22 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <link rel="icon" href="data:,">
-        <title>Portraits 2.gh</title>
-        <style>
-            body {
-                margin: 0;
-                font-family: Arial, Helvetica, sans-serif;
-            }
-            canvas { width: 100%; height: 100%; }
-            input[type=range] { width: 100%; }
-            #container { position: relative; }
-            #container canvas, #overlay { position: absolute; }
-            #overlay { z-index: 1; width: 100%; }
-            #overlay div { padding: 5px; }
-            #loader {
-                border: 5px solid #f3f3f3; /* Light grey */
-                border-top: 5px solid #3d3d3d; /* Grey */
-                border-radius: 50%;
-                width: 40px;
-                height: 40px;
-                animation: spin 1s linear infinite;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                z-index: 2;
-            }
-            @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
-        </style>
-    </head>
-    <body>
-        <div id="loader"></div> 
-        <div id="container">
-            <div id="overlay">
-                <div>
-                  <label for="Image Width">Image Width</label>
-                  <input type="number" id="Image Width" value="40">
-                </div>
-                <div>
-                  <label for="Image Height">Image Height</label>
-                  <input type="number" id="Image Height" value="50">
-                </div>
-                <div>
-                  <label for="Image Clarity">Image Clarity</label>
-                  <input type="range" id="Image Clarity" min="0.25" max="1" value="0.5" step="1">
-                </div>
-                <div>
-                  <label for="Abstraction">Abstraction</label>
-                  <input type="range" id="Abstraction" min="0" max="1" value="0" step="1">
-                </div>
-                <div>
-                  <label for="Invert Image">Invert Image</label>
-                  <input type="checkbox" id="Invert Image" checked>
-                </div>
-                <div>
-                  <label for="Pixels">Pixels</label>
-                  <input type="checkbox" id="Pixels" checked>
-                </div>
-                <div>
-                  <label for="Color Mode">Color Mode</label>
-                  <input type="checkbox" id="Color Mode" checked>
-                </div>
-                <div><button id="downloadButton" disabled>Download</button></div>
-                <div><a href="Portraits 2.gh" download="Portraits 2.gh.html">Save source code</a></div>
-            </div>
-        </div>
+//Page Setup
+//------------------------------------------------------------------------------//
+//animate landing page loader
+let landing = document.getElementById('landing-page')
+//To set time interval for black background
+//Could have done this with setTimeout()
+setInterval(function(){
+    landing.style.opacity= "0"}, 3000)
+//To set time interval to remove landing page
+setInterval(()=>
+    landing.style.display = "none",3300)
 
-        <script type="module">
+//console.log(landing)
+//console.log(document.getElementById('myImage').files)
+//-------------------------------------------------------------------------//
+
+//----------------------------------------------------------------------------//
+//BEGINNING OF SCRIPT//
+//----------------------------------------------------------------------------//
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.126.0/build/three.module.js'
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/controls/OrbitControls.js'
 import { Rhino3dmLoader } from 'https://cdn.jsdelivr.net/npm/three@0.126.0/examples/jsm/loaders/3DMLoader.js'
@@ -82,10 +28,9 @@ loader.setLibraryPath( 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/' )
 
 // initialise 'data' object that will be used by compute()
 const data = {
-  definition: 'Portraits 2.gh',
+  definition: 'Portraits 3.gh',
   inputs: getInputs()
 }
-console.log(data.inputs)
 
 // globals
 let rhino, doc
@@ -129,9 +74,6 @@ function getInputs() {
         break
     }
   }
-  //let filepath = "https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTY2NzA3MDU5MTEzMzM4MTQ4/marilyn_monroe_photo_alfred_eisenstaedt_pix_inc_the_life_picture_collection_getty_images_53376357_cropped.jpg"//"./Images/Test Image_Marilyn.jpg/"
-  let filepath
-  inputs.ImageFile = filepath;
   return inputs
 }
 
@@ -183,22 +125,12 @@ function init() {
  */
 async function compute() {
   // construct url for GET /solve/definition.gh?name=value(&...)
-  /*const url = new URL('/solve/' + data.definition, window.location.origin)
+  const url = new URL('/solve/' + data.definition, window.location.origin)
   Object.keys(data.inputs).forEach(key => url.searchParams.append(key, data.inputs[key]))
-  console.log(url.toString())*/
-  console.log(data.inputs)
-
-  const request = {
-    'method':'POST',
-    'body': JSON.stringify(data),
-    'headers': {'Content-Type': 'application/json'}
-  }
-
-  try {
-    const response = await fetch('/solve', request)
+  console.log(url.toString())
   
-  /*try {
-    const response = await fetch(url)*/
+  try {
+    const response = await fetch(url)
   
     if(!response.ok) {
       // TODO: check for errors in response json
@@ -318,7 +250,9 @@ function onSliderChange () {
       break
     }
   }
-  
+  let filepath = 
+  inputs.ImageFile = filepath;
+  return inputs
   data.inputs = inputs
 
   compute()
@@ -404,6 +338,4 @@ function showSpinner(enable) {
   else
     document.getElementById('loader').style.display = 'none'
 }
-        </script>
-    </body>
-</html>
+

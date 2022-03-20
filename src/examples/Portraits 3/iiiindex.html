@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <link rel="icon" href="data:,">
-        <title>Portraits 2.gh</title>
+        <title>Portraits 3.gh</title>
         <style>
             body {
                 margin: 0;
@@ -39,34 +39,46 @@
             <div id="overlay">
                 <div>
                   <label for="Image Width">Image Width</label>
-                  <input type="number" id="Image Width" value="40">
+                  <input type="number" id="Image Width" value="">
                 </div>
                 <div>
                   <label for="Image Height">Image Height</label>
-                  <input type="number" id="Image Height" value="50">
+                  <input type="number" id="Image Height" value="">
                 </div>
                 <div>
-                  <label for="Image Clarity">Image Clarity</label>
-                  <input type="range" id="Image Clarity" min="0.25" max="1" value="0.5" step="1">
+                  <label for="Scale">Scale</label>
+                  <input type="range" id="Scale" min="0.05" max="1.1" value="0.05" step="1">
                 </div>
                 <div>
-                  <label for="Abstraction">Abstraction</label>
-                  <input type="range" id="Abstraction" min="0" max="1" value="0" step="1">
+                  <label for="Image Resolution">Image Resolution</label>
+                  <input type="range" id="Image Resolution" min="0.25" max="1" value="0.5" step="1">
                 </div>
                 <div>
                   <label for="Invert Image">Invert Image</label>
                   <input type="checkbox" id="Invert Image" checked>
                 </div>
                 <div>
-                  <label for="Pixels">Pixels</label>
-                  <input type="checkbox" id="Pixels" checked>
-                </div>
-                <div>
                   <label for="Color Mode">Color Mode</label>
                   <input type="checkbox" id="Color Mode" checked>
                 </div>
+                <div>
+                  <label for="Pixels">Pixels</label>
+                  <input type="number" id="Pixels" value="2">
+                </div>
+                <div>
+                  <label for="Displacement">Displacement</label>
+                  <input type="number" id="Displacement" value="0">
+                </div>
+                <div>
+                  <label for="Abstraction">Abstraction</label>
+                  <input type="range" id="Abstraction" min="0" max="1" value="0" step="1">
+                </div>
+                <div>
+                  <label for="Distortion">Distortion</label>
+                  <input type="number" id="Distortion" value="90">
+                </div>
                 <div><button id="downloadButton" disabled>Download</button></div>
-                <div><a href="Portraits 2.gh" download="Portraits 2.gh.html">Save source code</a></div>
+                <div><a href="Portraits 3.gh" download="Portraits 3.gh.html">Save source code</a></div>
             </div>
         </div>
 
@@ -82,10 +94,9 @@ loader.setLibraryPath( 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/' )
 
 // initialise 'data' object that will be used by compute()
 const data = {
-  definition: 'Portraits 2.gh',
+  definition: 'Portraits 3.gh',
   inputs: getInputs()
 }
-console.log(data.inputs)
 
 // globals
 let rhino, doc
@@ -129,9 +140,6 @@ function getInputs() {
         break
     }
   }
-  //let filepath = "https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTY2NzA3MDU5MTEzMzM4MTQ4/marilyn_monroe_photo_alfred_eisenstaedt_pix_inc_the_life_picture_collection_getty_images_53376357_cropped.jpg"//"./Images/Test Image_Marilyn.jpg/"
-  let filepath
-  inputs.ImageFile = filepath;
   return inputs
 }
 
@@ -183,22 +191,12 @@ function init() {
  */
 async function compute() {
   // construct url for GET /solve/definition.gh?name=value(&...)
-  /*const url = new URL('/solve/' + data.definition, window.location.origin)
+  const url = new URL('/solve/' + data.definition, window.location.origin)
   Object.keys(data.inputs).forEach(key => url.searchParams.append(key, data.inputs[key]))
-  console.log(url.toString())*/
-  console.log(data.inputs)
-
-  const request = {
-    'method':'POST',
-    'body': JSON.stringify(data),
-    'headers': {'Content-Type': 'application/json'}
-  }
-
-  try {
-    const response = await fetch('/solve', request)
+  console.log(url.toString())
   
-  /*try {
-    const response = await fetch(url)*/
+  try {
+    const response = await fetch(url)
   
     if(!response.ok) {
       // TODO: check for errors in response json
@@ -318,7 +316,9 @@ function onSliderChange () {
       break
     }
   }
-  
+  let filepath = 
+  inputs.ImageFile = filepath;
+  return inputs
   data.inputs = inputs
 
   compute()

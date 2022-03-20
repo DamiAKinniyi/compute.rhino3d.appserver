@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portraits</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="container">
+        <div id="loader2" ><p></p></div>
+    </div>
+    <div id="container2">
+        <div id="controlbox">
+            <div class="wrapper">
+               <h3 id ="header">Make A Portrait</h3>
+            </div>
+            <div class="wrapper">
+                <form>
+                        <label class="select-image-button" for="myImage">Select Image</label>
+                        <input type="file" id="myImage" name="myImage" accept = "image/png, image/jpeg" style="opacity: 0;">
+                        <div class="image_preview">Image Preview</div><br>
+                        <input type="button" class="select-image-button" id="submit" value="Upload">    
+                </form>
+               
+            </div>
+
+            <div class="wrapper">
+                <p>Image Parameters</p><br>                   
+                <label for="width">width</label><br>
+                <input id="width" name="width" type="range" step="1" min="30" max="1000" value=""><br>
+
+                <label for="height">height</label><br>
+                <input name="height" id="height" type="range" step="1" min="30" max="1000" value=""><br><br> 
+
+                <label for="scale">Scale</label><br>
+                <input type="range" name="scale" id="scale" min="0.05" max="1.0" value="0.05" step="0.01"><br><br>
+
+                <label for="resolution">Resolution</label><br>
+                <input name="resolution" id="resolution" type="range" step="0.01" min="0.2" max="1" value="0.3"><br> <br>
+
+                <label for colormode>Monochrome</label>
+                <!--<button alt="0"class="button" id="coloured">Coloured</button>
+                <button alt="1"class="button" id="monochrome">Monochrome</button>-->
+                <input type="checkbox" id="colormode" unchecked><br><br>
+
+
+                <label>Show Negative</label>
+                <!--<button alt="0" class="button" id="false">False</button>
+                <button alt="1"class="button" id="true">True</button>-->
+                <input type="checkbox" id="Invert" unchecked><br><br>
+
+                <label>Pixels</label>
+                <button alt="0"class="button" id="dots">Dots</button>
+                <button alt="1"class="button" id="boxes">Boxes</button>
+                <button alt="2"class="button" id="lines">Lines</button><br><br>
+
+                <label for="abstraction">abstraction</label><br>
+                <input name="abstraction" id="abstraction" type="range" step="0.01" min="0" max="1" value="0"><br> <br>
+
+                <label for="displacement">Displacement</label><br>
+                <input name="displacement" id="displacement" type="range" step="1" min="0" max="20" value="0"><br> <br>
+
+                <label for="distortion">Distortion</label><br>
+                <input name="distortion" id="distortion" type="range" step="1" min="0" max="720" value="90"><br> <br>
+
+
+            </div>
+            
+        </div>
+        
+    </div>
+
+    <div id="landing-page">
+
+        <div id="portraits"><p>P</p></div>
+        <div id="portraits"><p>O</p></div>
+        <div id="portraits"><p>R</p></div>
+        <div id="portraits"><p>T</p></div>
+        <div id="loader"><p>R</p></div>
+        <div id="portraits"><p>A</p></div>
+        <div id="portraits"><p>I</p></div>
+        <div id="portraits"><p>T</p></div>
+        <div id="portraits"><p>S</p></div>
+    </div>
+
+
+
+
+
+    <script src="sscript.js" type="module"></script>
+</body>
+</html>
