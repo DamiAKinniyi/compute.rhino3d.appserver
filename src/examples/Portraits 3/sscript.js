@@ -166,7 +166,7 @@ async function compute() {
   const data = {
     definition: definition,
     inputs: {
-      'ImageFile':string(document.getElementById('filepath').innerText),
+      'ImageFile':document.getElementById('filepath').innerText,
       'Width':width.valueAsNumber,
       'Height':height.valueAsNumber,
       'Scale':scale.valueAsNumber,
