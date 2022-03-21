@@ -184,6 +184,7 @@ function init() {
  * Call appserver
  */
 async function compute() {
+  showSpinner(true);
     // initialise 'data' object that will be used by compute()
   const data = {
     definition: definition,
@@ -319,13 +320,15 @@ function onSliderChange () {
 
 function onClick(e){
     //show spinner
-    document.getElementById('container').style.display = 'flex';
+    showSpinner(true);
 
     pixels = e.target.getAttribute('alt');   
     compute()
 }
 
 function onCheck(e){
+
+  showSpinner(true);
   const x = e.target.getAttribute ('checked');
   if (x===true){
     e.target.setAttribute('checked',"False")
@@ -386,7 +389,7 @@ function validFileType(file) {
 
 function onSend(){
   //show spinner
-  document.getElementById('container').style.display = 'flex';
+  showSpinner(true);
 
   if (image.files && image.files[0]) {
       var fileSize;
@@ -402,11 +405,11 @@ function onSend(){
           //filepath = reader.result
           let fpath = reader.result;
           console.log(fpath)
-         let cleanerPath // = fpath.substring(23)
+         let cleanerPath  = fpath.substring(23)
           //cleanerPath = cleanerPath.replace('-','+')
           //cleanerPath = cleanerPath.replace('_', '/')
-          cleanerPath =  fpath.replace("data:", "");
-          cleanerPath = cleanerPath.replace(/^.+,/, "");
+         // cleanerPath =  fpath.replace("data:", "");
+          //cleanerPath = cleanerPath.replace(/^.+,/, "");
           filepath = cleanerPath
           console.log (filepath)
           //compute()
@@ -511,8 +514,7 @@ function download () {
  */
 function showSpinner(enable) {
   if (enable)
-    document.getElementById('loader').style.display = 'block'
+  document.getElementById('container').style.display = 'flex';
   else
-    document.getElementById('loader').style.display = 'none'
+  document.getElementById('container').style.display = 'none';
 }
-
