@@ -202,7 +202,7 @@ async function compute() {
       'Pixels': pixels,
       'Abstraction': abstraction.valueAsNumber,
       'Displacement': displacement.valueAsNumber,
-      'Invert':invert.checked,
+      'Negative':invert.checked,
       'Distortion': distortion.valueAsNumber
     }
   }
