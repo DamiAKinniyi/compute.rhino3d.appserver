@@ -331,11 +331,11 @@ function onCheck(e){
   showSpinner(true);
   const x = e.target.getAttribute ('checked');
   if (x===true){
-    e.target.setAttribute('checked',"False")
+    e.target.setAttribute('checked',"0")
     
   }
   else if (x==false){
-    e.target.setAttribute('checked',"True")
+    e.target.setAttribute('checked',"1")
   }
   compute()
 
