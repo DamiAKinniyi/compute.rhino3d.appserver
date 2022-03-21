@@ -309,8 +309,8 @@ async function compute() {
         Height:height.valueAsNumber,
         Scale:scale.valueAsNumber,
         Resolution:resolution.valueAsNumber,
-        Invert:invert.checked,
         Monochrome: colormode.checked,
+        Invert:invert.checked,
         Pixels: pixels,
         Abstraction: abstraction.valueAsNumber,
         Displacement: displacement.valueAsNumber
