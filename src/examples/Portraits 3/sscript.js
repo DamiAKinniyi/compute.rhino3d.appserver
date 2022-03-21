@@ -421,7 +421,7 @@ function onSend(){
           //filepath = reader.result
           let fpath = reader.result;
           console.log(fpath)
-          var cleanerPath // = fpath.substring(23)
+         let cleanerPath // = fpath.substring(23)
           //cleanerPath = cleanerPath.replace('-','+')
           //cleanerPath = cleanerPath.replace('_', '/')
           cleanerPath =  cleanerPath.replace("data:", "");
