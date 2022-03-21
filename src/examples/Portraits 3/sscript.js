@@ -413,7 +413,7 @@ function onSend(){
           filepath = fpath.replace("data:", "").replace(/^.+,/, "");
           //let y = document.getElementById("filepath")
           //y.innerText = filepath
-          console.log (y)
+          //console.log (y)
           compute()
                 
       }
