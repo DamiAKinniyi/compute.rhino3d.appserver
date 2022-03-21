@@ -181,11 +181,8 @@ async function compute() {
   }
 
   console.log(data.inputs);
-
-
   // construct url for GET /solve/definition.gh?name=value(&...)
-   //showSpinner(true);
-  
+     
     const request = {
       method: "POST",
       body: JSON.stringify(data),
@@ -284,31 +281,26 @@ function decodeItem(item) {
 //*/
 function onSliderChange () {
   showSpinner(true)
-
   compute()
 }
 
 function onClick(e){
     //show spinner
     showSpinner(true);
-
     pixels = e.target.getAttribute('alt');   
     compute()
 }
 
 function onCheck(e){
-
   showSpinner(true);
   const x = e.target.getAttribute ('checked');
   if (x===true){
     e.target.setAttribute('checked',"0")
-    
-  }
+ }
   else if (x==false){
     e.target.setAttribute('checked',"1")
   }
   compute()
-
 }
 
 //Start ImageChange and Image Preview//
@@ -348,14 +340,10 @@ function updateImageDisplay(){
       //filepath = cleanerpath
 }
 
-
-
 function validFileType(file) {
   const fileTypes = ["image/png", "image/jpeg"];
   return fileTypes.includes(file.type);
 }
-
-
 
 function onSend(){
   //show spinner
@@ -385,19 +373,13 @@ function onSend(){
      reader.onerror = function(event) {
          console.error("File could not be read! Code " + event.target.error.code);
      };
-
                    
      reader.onloadend = function() {
          alert('Image uploaded')
          //filepath=reader.result.replace("data:", "").replace(/^.+,/, "");
          //compute()
      }
-     
-     //reader.readAsDataURL(image.files[0]);
-     
-      
-      //console.log(filepath)
-      
+           
   }
   //console.log(dataUrl)
   //console.log(reader)
