@@ -35,8 +35,8 @@ loader.setLibraryPath( 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/' )
 
 
 // globals
-let rhino, doc, definition;
-definition = 'Portraits 3.gh';
+let rhino, doc;
+const definition = 'Portraits 3.gh';
 
 rhino3dm().then(async m => {
     rhino = m
@@ -59,7 +59,7 @@ downloadButton.onclick = download
 //Declare sliders//
 //Set up Image Selection and Preview--------------------------------------//
 let image, image2, reader, send, imageAddress, filepath;
-let width, height, scale, resolution, colormode, invert, pixels, abstraction, dots, boxes, plines, displacement, distortion;
+let width, height, scale, resolution, colormode, invert, abstraction, dots, boxes, plines, displacement, distortion;
 
 image = document.getElementById("myImage")
 const imagePreview = document.getElementsByClassName("image_preview")[0];
@@ -95,7 +95,7 @@ boxes = document.getElementById("boxes")
 boxes.addEventListener("click", onClick)
 plines = document.getElementById("plines")
 plines.addEventListener("click", onClick)
-pixels = 0
+const pixels = 0
 
 abstraction = document.getElementById("abstraction")
 abstraction.addEventListener('click', onSliderChange,false)
@@ -193,6 +193,7 @@ function onSend(){
     
     send.disabled = true
     
+    return filepath
 
 }
 
