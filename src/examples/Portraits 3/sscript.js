@@ -84,10 +84,10 @@ resolution.addEventListener('click', onSliderChange,false)
 resolution.addEventListener('touchend', onSliderChange,false)
 
 const colormode = document.getElementById("colormode")
-colormode.addEventListener(('click', onSliderChange,false))
+colormode.addEventListener(('click', onCheck,false))
 
 const invert = document.getElementById("invert")
-invert.addEventListener(('click', onSliderChange,false))
+invert.addEventListener(('click', onCheck,false))
 
 const dots = document.getElementById("dots")
 dots.addEventListener("click", onClick)
@@ -449,6 +449,18 @@ function onClick(e){
 
     pixels = e.target.getAttribute('alt');   
     compute()
+}
+
+function onCheck(e){
+  const x = e.target.getAttribute ('checked');
+  if (x===true){
+    e.target.setAttribute('checked',"false")
+    
+  }
+  else if (x==false){
+    e.target.setAttribute('checked',"true")
+  }
+
 }
 
 /**
