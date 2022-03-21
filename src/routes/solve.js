@@ -23,9 +23,12 @@ if(process.env.MEMCACHIER_SERVERS !== undefined) {
 
 function computeParams (req, res, next){
   compute.url = process.env.RHINO_COMPUTE_URL
+  console.log(compute.url)
   compute.apiKey = process.env.RHINO_COMPUTE_KEY
+  console.log(compute.apiKey)
   next()
 }
+
 
 /**
  * Collect request parameters
