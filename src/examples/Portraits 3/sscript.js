@@ -119,7 +119,7 @@ function imageChange(){
         alert('you have changed the image')
         updateImageDisplay()
     }  
-    send.disabled = false
+    //send.disabled = false
 }
 
 function updateImageDisplay(){
@@ -149,6 +149,7 @@ function validFileType(file) {
 function onSend(){
     //show spinner
     document.getElementById('container').style.display = 'flex';
+    send.disabled = true;
 
     if (image.files && image.files[0]) {
         var fileSize;
