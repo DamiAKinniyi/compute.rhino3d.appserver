@@ -404,14 +404,10 @@ function onSend(){
       //console.log(reader.result)
       reader.onload = function () {
          let fpath = reader.result;
-         //console.log(fpath)
-         //let cleanerPath  = fpath.substring(23)
-          //cleanerPath = cleanerPath.replace('-','+')
-          //cleanerPath = cleanerPath.replace('_', '/')
-         cleanerPath = fpath.replace("data:", "").replace(/^.+,/, "");
-          filepath = cleanerPath
-          console.log (filepath)
-          compute()
+         //cleanerPath = fpath.replace("data:", "").replace(/^.+,/, "");
+         // filepath = cleanerPath
+         // console.log (filepath)
+          //compute()
                 
       }
      reader.onerror = function(event) {
@@ -421,11 +417,11 @@ function onSend(){
                    
      reader.onloadend = function() {
          alert('Image uploaded')
-         //filepath=reader.result.replace("data:", "").replace(/^.+,/, "");
+         filepath=reader.result.replace("data:", "").replace(/^.+,/, "");
          compute()
      }
      
-     //reader.readAsDataURL(image.files[0]);
+     reader.readAsDataURL(image.files[0]);
      
       
       //console.log(filepath)
