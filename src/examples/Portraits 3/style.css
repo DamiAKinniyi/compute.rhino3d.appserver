@@ -121,7 +121,7 @@ p{
 
 .image_preview{
     width:100%;
-    height:auto;
+    height:15vh;
     max-height:20vh;
     justify-content: center;
     align-items:center;
