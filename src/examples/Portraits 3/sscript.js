@@ -96,6 +96,10 @@ const displacement = document.getElementById("displacement")
 displacement.addEventListener('click', onSliderChange,false)
 displacement.addEventListener('touchend', onSliderChange,false)
 
+const distortion = document.getElementById("distortion")
+distortion.addEventListener('click', onSliderChange,false)
+distortion.addEventListener('touchend', onSliderChange,false)
+
 // globals
 let rhino, doc;
 
@@ -198,7 +202,8 @@ async function compute() {
       'Pixels': pixels,
       'Abstraction': abstraction.valueAsNumber,
       'Displacement': displacement.valueAsNumber,
-      'Invert':invert.checked
+      'Invert':invert.checked,
+      'Distortion': distortion.valueAsNumber
     }
   }
 
