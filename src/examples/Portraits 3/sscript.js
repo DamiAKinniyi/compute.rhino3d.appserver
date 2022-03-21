@@ -211,7 +211,7 @@ async function compute() {
 
 
   // construct url for GET /solve/definition.gh?name=value(&...)
-   showSpinner(true);
+   //showSpinner(true);
   
     const request = {
       method: "POST",
