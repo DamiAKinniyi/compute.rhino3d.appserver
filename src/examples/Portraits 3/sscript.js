@@ -28,13 +28,6 @@ const loader = new Rhino3dmLoader()
 loader.setLibraryPath( 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/' )
 const definition = 'Portraits 3.gh';
 
-// initialise 'data' object that will be used by compute()
-/*const data = {
-  definition: 'Portraits 3.gh',
-  inputs: getInputs()
-}*/
-
-
 const downloadButton = document.getElementById("downloadButton")
 downloadButton.onclick = download
 
@@ -278,7 +271,7 @@ function decodeItem(item) {
 }
 
 
-//*/
+//* change functions//
 function onSliderChange () {
   showSpinner(true)
   compute()
@@ -364,7 +357,7 @@ function onSend(){
           let fpath = reader.result;
           console.log(fpath)
           filepath = fpath.replace("data:", "").replace(/^.+,/, "");
-          let y = document.getElementById("filepath")
+          //let y = document.getElementById("filepath")
            compute()
                 
       }
