@@ -184,7 +184,27 @@ function init() {
  * Call appserver
  */
 async function compute() {
- /* // construct url for GET /solve/definition.gh?name=value(&...)
+    // initialise 'data' object that will be used by compute()
+  const data = {
+    definition: definition,
+    inputs: {
+      'ImageFile.': filepath,
+      'Width':width.valueAsNumber,
+      'Height':height.valueAsNumber,
+      'Scale':scale.valueAsNumber,
+      'Resolution':resolution.valueAsNumber,
+      'Monochrome': colormode.checked,
+      'Pixels': pixels,
+      'Abstraction': abstraction.valueAsNumber,
+      'Displacement': displacement.valueAsNumber,
+      'Invert':invert.checked
+    }
+  }
+
+  console.log(data.inputs);
+
+
+  // construct url for GET /solve/definition.gh?name=value(&...)
   const url = new URL('/solve/' + data.definition, window.location.origin)
   Object.keys(data.inputs).forEach(key => url.searchParams.append(key, data.inputs[key]))
   console.log(url.toString())
@@ -203,27 +223,13 @@ async function compute() {
 
   } catch(error) {
     console.error(error)
-  }*/
-    showSpinner(true);
+  }
+  /*showSpinner(true);
   
-    // initialise 'data' object that will be used by compute()
-    const data = {
-      definition: definition,
-      inputs: {
-        'ImageFile.': filepath,
-        'Width':width.valueAsNumber,
-        'Height':height.valueAsNumber,
-        'Scale':scale.valueAsNumber,
-        'Resolution':resolution.valueAsNumber,
-        'Monochrome': colormode.checked,
-        'Pixels': pixels,
-        'Abstraction': abstraction.valueAsNumber,
-        'Displacement': displacement.valueAsNumber,
-        'Invert':invert.checked
-      }
-    }
   
-    console.log(data.inputs);
+
+  
+
   
     const request = {
       method: "POST",
@@ -240,7 +246,7 @@ async function compute() {
       collectResults(responseJson);
     } catch (error) {
       console.error(error);
-    }
+    }*/
 
 }
 
