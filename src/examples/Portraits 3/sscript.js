@@ -193,7 +193,7 @@ async function compute() {
   const data = {
     definition: definition,
     inputs: {
-      'ImageFile.': filepath,
+      'ImageFile.':getElementById("filepath").innerText,
       'Width':width.valueAsNumber,
       'Height':height.valueAsNumber,
       'Scale':scale.valueAsNumber,
@@ -406,16 +406,15 @@ function onSend(){
           //var dataUrl = event.target.result; 
           //let imgs = document.createElement("img")
           //imgs.src = dataUrl
-          //fileSize = image.files[0].size
-          //filepath = reader.result
+          fileSize = image.files[0].size
+          console.log(fileSize)
           let fpath = reader.result;
           console.log(fpath)
-          var cleanerPath = fpath.replace("data:", "").replace(/^.+,/, "");
-          //cleanerPath = cleanerPath.replace('-','+')
-          //cleanerPath = cleanerPath.replace('_', '/')
-          filepath = cleanerPath
-          console.log (filepath)
-          compute()
+          filepath = fpath.replace("data:", "").replace(/^.+,/, "");
+          let y = getElementById("filepath")
+          y.innerText = filepath
+          console.log (y)
+          //compute()
                 
       }
      reader.onerror = function(event) {
