@@ -26,6 +26,7 @@ import rhino3dm from 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/rhino3dm
 // set up loader for converting the results to threejs
 const loader = new Rhino3dmLoader()
 loader.setLibraryPath( 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/' )
+const definition = 'Portraits 3.gh';
 
 // initialise 'data' object that will be used by compute()
 /*const data = {
@@ -33,18 +34,6 @@ loader.setLibraryPath( 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/' )
   inputs: getInputs()
 }*/
 
-
-// globals
-let rhino, doc;
-const definition = 'Portraits 3.gh';
-
-rhino3dm().then(async m => {
-    rhino = m
-    console.log("Loaded rhino3dm.");
-
-    init()
-    //compute()
-})
 
 const downloadButton = document.getElementById("downloadButton")
 downloadButton.onclick = download
@@ -84,10 +73,11 @@ resolution.addEventListener('click', onSliderChange,false)
 resolution.addEventListener('touchend', onSliderChange,false)
 
 const colormode = document.getElementById("colormode")
-colormode.addEventListener(('click', onCheck,false))
+colormode.addEventListener('click', onCheck, false)
 
 const invert = document.getElementById("invert")
-invert.addEventListener(('click', onCheck, false))
+invert.addEventListener('click', onCheck, false)
+console.log(invert)
 
 const dots = document.getElementById("dots")
 dots.addEventListener("click", onClick)
@@ -95,7 +85,8 @@ const boxes = document.getElementById("boxes")
 boxes.addEventListener("click", onClick)
 const plines = document.getElementById("plines")
 plines.addEventListener("click", onClick)
-const pixels = 0
+let pixels = 0
+console.log(pixels)
 
 const abstraction = document.getElementById("abstraction")
 abstraction.addEventListener('click', onSliderChange,false)
@@ -105,7 +96,17 @@ const displacement = document.getElementById("displacement")
 displacement.addEventListener('click', onSliderChange,false)
 displacement.addEventListener('touchend', onSliderChange,false)
 
+// globals
+let rhino, doc;
 
+
+rhino3dm().then(async m => {
+    rhino = m
+    console.log("Loaded rhino3dm.");
+
+    init()
+    compute()
+})
 
 /**
  * Gets <input> elements from html and sets handlers
@@ -209,18 +210,18 @@ async function compute() {
     const data = {
       definition: definition,
       inputs: {
-        ImageFile: filepath,
-        Width:width.valueAsNumber,
-        Height:height.valueAsNumber,
-        Scale:scale.valueAsNumber,
-        Resolution:resolution.valueAsNumber,
-        Monochrome: colormode.checked,
-        Invert:invert.checked,
-        Pixels: pixels,
-        Abstraction: abstraction.valueAsNumber,
-        Displacement: displacement.valueAsNumber
-      },
-    };
+        'ImageFile.': filepath,
+        'Width':width.valueAsNumber,
+        'Height':height.valueAsNumber,
+        'Scale':scale.valueAsNumber,
+        'Resolution':resolution.valueAsNumber,
+        'Monochrome': colormode.checked,
+        'Pixels': pixels,
+        'Abstraction': abstraction.valueAsNumber,
+        'Displacement': displacement.valueAsNumber,
+        'Invert':invert.checked
+      }
+    }
   
     console.log(data.inputs);
   
