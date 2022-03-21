@@ -121,7 +121,7 @@ function commonSolve (req, res, next){
     return
   } else {
     //solve
-    //console.log('solving')
+    console.log('solving')
     // set parameters
     let trees = []
     if(res.locals.params.inputs !== undefined) { //TODO: handle no inputs
@@ -138,7 +138,7 @@ function commonSolve (req, res, next){
         trees.push(param)
       }
     }
-    //console.log(trees)
+    console.log(trees)
     let fullUrl = req.protocol + '://' + req.get('host')
     let definitionPath = `${fullUrl}/definition/${definition.id}`
     const timePreComputeServerCall = performance.now()
