@@ -43,7 +43,7 @@ rhino3dm().then(async m => {
     console.log("Loaded rhino3dm.");
 
     init()
-    compute()
+    //compute()
 })
 
 const downloadButton = document.getElementById("downloadButton")
@@ -87,7 +87,7 @@ const colormode = document.getElementById("colormode")
 colormode.addEventListener(('click', onCheck,false))
 
 const invert = document.getElementById("invert")
-invert.addEventListener(('click', onCheck,false))
+invert.addEventListener(('click', onCheck, false))
 
 const dots = document.getElementById("dots")
 dots.addEventListener("click", onClick)
