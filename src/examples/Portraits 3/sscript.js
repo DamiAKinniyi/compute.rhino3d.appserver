@@ -232,7 +232,7 @@ async function compute() {
     };
   
     try {
-      const response = await fetch("/solve", request);
+      const response = await fetch("./solve", request);
   
       if (!response.ok) throw new Error(response.statusText);
   
