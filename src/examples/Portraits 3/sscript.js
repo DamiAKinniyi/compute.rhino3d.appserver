@@ -412,7 +412,7 @@ function onSend(){
           //cleanerPath = cleanerPath.replace(/^.+,/, "");
           filepath = cleanerPath
           console.log (filepath)
-          //compute()
+          compute()
                 
       };
      reader.onerror = function(event) {
