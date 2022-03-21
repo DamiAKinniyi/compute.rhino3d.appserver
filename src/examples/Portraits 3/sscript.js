@@ -109,7 +109,7 @@ rhino3dm().then(async m => {
     console.log("Loaded rhino3dm.");
 
     init()
-    compute()
+    //compute()
 })
 
 /**
