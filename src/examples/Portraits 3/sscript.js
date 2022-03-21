@@ -39,6 +39,7 @@ let rhino, doc
 
 rhino3dm().then(async m => {
     rhino = m
+    console.log("Loaded rhino3dm.");
 
     init()
     compute()
@@ -56,12 +57,14 @@ downloadButton.onclick = download
 //Set up Slider Events
 //Declare sliders//
 //Set up Image Selection and Preview--------------------------------------//
-let image, image2, reader, imageAddress, filepath;
+let image, image2, reader, send, imageAddress, filepath;
 let width, height, scale, resolution, colormode, invert, pixels, abstraction, dots, boxes, plines, displacement, distortion;
 
 image = document.getElementById("myImage")
 const imagePreview = document.getElementsByClassName("image_preview")[0];
 image.addEventListener('change', imageChange);
+send = document.getElementById('submit');
+send.addEventListener("click", onSend);
 
 width = document.getElementById("width")
 width.addEventListener('click',  onSliderChange,false)
@@ -99,9 +102,6 @@ abstraction.addEventListener('touchend', onSliderChange,false)
 
 //Start ImageChange and Image Preview//
 
-let send = document.getElementById('submit');
-send.addEventListener("click", onSend);
-
 function imageChange(){
     console.log(image.files)
     console.log(image.files[0])
@@ -119,7 +119,7 @@ function imageChange(){
         alert('you have changed the image')
         updateImageDisplay()
     }  
-    //send.disabled = false
+    send.disabled = false
 }
 
 function updateImageDisplay(){
@@ -149,7 +149,6 @@ function validFileType(file) {
 function onSend(){
     //show spinner
     document.getElementById('container').style.display = 'flex';
-    send.disabled = true;
 
     if (image.files && image.files[0]) {
         var fileSize;
@@ -183,6 +182,20 @@ function onSend(){
        reader.onloadend = function() {
            alert('Done')
        }
+        
+        //console.log(filepath)
+        
+    }
+    //console.log(dataUrl)
+    //console.log(reader)
+    //console.log(reader.result)
+    
+    send.disabled = true
+    
+
+}
+
+
 /**
  * Gets <input> elements from html and sets handlers
  * (html is generated from the grasshopper definition)
@@ -217,6 +230,7 @@ let scene, camera, renderer, controls
 /**
  * Sets up the scene, camera, renderer, lights and controls and starts the animation
  */
+
 function init() {
 
     // Rhino models are z-up, so set this as the default
@@ -401,30 +415,7 @@ function decodeItem(item) {
   return null
 }
 
-/**
- * Called when a slider value changes in the UI. Collect all of the
- * slider values and call compute to solve for a new scene
- */
 
-
-     
-
-
-
-///*
-
-        
-        //console.log(filepath)
-        
-    }
-    //console.log(dataUrl)
-    //console.log(reader)
-    //console.log(reader.result)
-    
-    send.disabled = true
-    
-
-}
 //*/
 function onSliderChange () {
   showSpinner(true)
