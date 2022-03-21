@@ -112,33 +112,6 @@ rhino3dm().then(async m => {
     //compute()
 })
 
-/**
- * Gets <input> elements from html and sets handlers
- * (html is generated from the grasshopper definition)
- */
-/*function getInputs() {
-  const inputs = {}
-  for (const input of document.getElementsByTagName('input')) {
-    switch (input.type) {
-      case 'number':
-        inputs[input.id] = input.valueAsNumber
-        input.onchange = onSliderChange
-        break
-      case 'range':
-        inputs[input.id] = input.valueAsNumber
-        input.onmouseup = onSliderChange
-        input.ontouchend = onSliderChange
-        break
-      case 'checkbox':
-        inputs[input.id] = input.checked
-        input.onclick = onSliderChange
-        break
-      default:
-        break
-    }
-  }
-    return inputs
-}*/
 
 // more globals
 let scene, camera, renderer, controls
@@ -193,7 +166,7 @@ async function compute() {
   const data = {
     definition: definition,
     inputs: {
-      'ImageFile':document.getElementById('filepath').innerText,
+      'ImageFile':string(document.getElementById('filepath').innerText),
       'Width':width.valueAsNumber,
       'Height':height.valueAsNumber,
       'Scale':scale.valueAsNumber,
@@ -272,14 +245,6 @@ function collectResults(responseJson) {
     const buffer = new Uint8Array(doc.toByteArray()).buffer
     loader.parse( buffer, function ( object ) 
     {
-        // debug 
-        /*
-        object.traverse(child => {
-          if (child.material !== undefined)
-            child.material = new THREE.MeshNormalMaterial()
-        }, false)
-        */
-
         // clear objects from scene. do this here to avoid blink
         scene.traverse(child => {
             if (!child.isLight) {
@@ -414,7 +379,7 @@ function onSend(){
           let y = document.getElementById("filepath")
           y.innerText = filepath
           console.log (y.innertext)
-          compute()
+          //compute()
                 
       }
      reader.onerror = function(event) {
