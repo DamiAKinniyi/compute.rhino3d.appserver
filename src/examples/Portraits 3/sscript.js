@@ -203,7 +203,7 @@ async function compute() {
       'Pixels': pixels,
       'Displacement': displacement.valueAsNumber,
       'Abstraction': abstraction.valueAsNumber, 
-      'Distortion': distortion.valueAsNumber
+      'Distortion': distortion.valueAsNumber,
     }
   }
 
