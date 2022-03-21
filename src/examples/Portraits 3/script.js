@@ -14,6 +14,8 @@ setInterval(()=>
 //console.log(document.getElementById('myImage').files)
 //-------------------------------------------------------------------------//
 
+
+
 //----------------------------------------------------------------------------//
 //BEGINNING OF SCRIPT//
 //----------------------------------------------------------------------------//
@@ -231,19 +233,41 @@ function collectResults(responseJson) {
       return
     }
 
-    // load rhino doc into three.js scene
-    const buffer = new Uint8Array(doc.toByteArray()).buffer
-    loader.parse( buffer, function ( object ) 
-    {
-        // clear objects from scene. do this here to avoid blink
-        scene.traverse(child => {
-            if (!child.isLight) {
-                scene.remove(child)
-            }
-        })
+  // load rhino doc into three.js scene
+  const buffer = new Uint8Array(doc.toByteArray()).buffer;
+  loader.parse(buffer, function (object) {
+    // clear objects from scene
+    scene.traverse((child) => {
+      if (
+        child.userData.hasOwnProperty("objectType") &&
+        child.userData.objectType === "File3dm"
+      ) {
+        scene.remove(child);
+      }
+    });
 
-        // add object graph from rhino model to three.js scene
-        scene.add( object )
+    ///////////////////////////////////////////////////////////////////////
+
+    // color crvs
+    object.traverse((child) => {
+      if (child.isLine) {
+        if (child.userData.attributes.geometry.userStringCount > 0) {
+          //console.log(child.userData.attributes.geometry.userStrings[0][1])
+          const col = child.userData.attributes.geometry.userStrings[0][1];
+          const threeColor = new THREE.Color("rgb(" + col + ")");
+          const mat = new THREE.LineBasicMaterial({ color: threeColor });
+          child.material = mat;
+        }
+      }
+    });
+
+    ///////////////////////////////////////////////////////////////////////
+    // add object graph from rhino model to three.js scene
+    scene.add(object);
+
+    // hide spinner and enable download button
+    showSpinner(false);
+    //downloadButton.disabled = false
 
         // hide spinner and enable download button
         showSpinner(false)
@@ -379,7 +403,7 @@ function onSend(){
   
   send.disabled = true
   
-  return filepath
+  //return filepath
 
 }
 
