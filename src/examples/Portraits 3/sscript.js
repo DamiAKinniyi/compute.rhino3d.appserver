@@ -428,10 +428,11 @@ function onSend(){
      reader.onloadend = function() {
          alert('Image uploaded')
          filepath=reader.result.replace("data:", "").replace(/^.+,/, "");
+         compute()
      }
      
      reader.readAsDataURL(image.files[0]);
-     compute()
+     
       
       //console.log(filepath)
       
