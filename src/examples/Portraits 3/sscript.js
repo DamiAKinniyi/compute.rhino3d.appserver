@@ -59,7 +59,7 @@ downloadButton.onclick = download
 //Declare sliders//
 //Set up Image Selection and Preview--------------------------------------//
 let image, image2, reader, send, imageAddress, filepath;
-let width, height, scale, resolution, colormode, invert, abstraction, dots, boxes, plines, displacement, distortion;
+//let width, height, scale, resolution, colormode, invert, abstraction, dots, boxes, plines, displacement, distortion;
 
 image = document.getElementById("myImage")
 const imagePreview = document.getElementsByClassName("image_preview")[0];
@@ -67,39 +67,43 @@ image.addEventListener('change', imageChange);
 send = document.getElementById('submit');
 send.addEventListener("click", onSend);
 
-width = document.getElementById("width")
+const width = document.getElementById("width")
 width.addEventListener('click',  onSliderChange,false)
 width.addEventListener('touchend',  onSliderChange,false)
 
-height = document.getElementById("height")
+const height = document.getElementById("height")
 height.addEventListener('click', onSliderChange,false)
 height.addEventListener('touchend', onSliderChange,false)
 
-scale = document.getElementById("scale")
+const scale = document.getElementById("scale")
 scale.addEventListener('click', onSliderChange,false)
 scale.addEventListener('touchend', onSliderChange,false)
 
-resolution = document.getElementById("resolution")
+const resolution = document.getElementById("resolution")
 resolution.addEventListener('click', onSliderChange,false)
 resolution.addEventListener('touchend', onSliderChange,false)
 
-colormode = document.getElementById("colormode")
+const colormode = document.getElementById("colormode")
 colormode.addEventListener(('click', onSliderChange,false))
 
-invert = document.getElementById("invert")
+const invert = document.getElementById("invert")
 invert.addEventListener(('click', onSliderChange,false))
 
-dots = document.getElementById("dots")
+const dots = document.getElementById("dots")
 dots.addEventListener("click", onClick)
-boxes = document.getElementById("boxes")
+const boxes = document.getElementById("boxes")
 boxes.addEventListener("click", onClick)
-plines = document.getElementById("plines")
+const plines = document.getElementById("plines")
 plines.addEventListener("click", onClick)
 const pixels = 0
 
-abstraction = document.getElementById("abstraction")
+const abstraction = document.getElementById("abstraction")
 abstraction.addEventListener('click', onSliderChange,false)
 abstraction.addEventListener('touchend', onSliderChange,false)
+
+const displacement = document.getElementById("displacement")
+displacement.addEventListener('click', onSliderChange,false)
+displacement.addEventListener('touchend', onSliderChange,false)
 
 //Start ImageChange and Image Preview//
 
@@ -422,7 +426,7 @@ function decodeItem(item) {
 function onSliderChange () {
   showSpinner(true)
   // get slider values
-  let inputs = {}
+ /* let inputs = {}
   for (const input of document.getElementsByTagName('input')) {
     switch (input.type) {
     case 'number':
@@ -435,7 +439,7 @@ function onSliderChange () {
       inputs[input.id] = input.checked
       break
     }
-  }
+  }*/
   compute()
 }
 
