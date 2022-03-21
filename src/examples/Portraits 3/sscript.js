@@ -77,7 +77,7 @@ colormode.addEventListener('click', onCheck, false)
 
 const invert = document.getElementById("invert")
 invert.addEventListener('click', onCheck, false)
-console.log(invert)
+//console.log(invert)
 
 const dots = document.getElementById("dots")
 dots.addEventListener("click", onClick)
@@ -86,7 +86,7 @@ boxes.addEventListener("click", onClick)
 const plines = document.getElementById("plines")
 plines.addEventListener("click", onClick)
 let pixels = 0
-console.log(pixels)
+//console.log(pixels)
 
 const abstraction = document.getElementById("abstraction")
 abstraction.addEventListener('click', onSliderChange,false)
@@ -207,11 +207,6 @@ async function compute() {
   // construct url for GET /solve/definition.gh?name=value(&...)
    showSpinner(true);
   
-  
-
-  
-
-  
     const request = {
       method: "POST",
       body: JSON.stringify(data),
@@ -318,21 +313,7 @@ function decodeItem(item) {
 //*/
 function onSliderChange () {
   showSpinner(true)
-  // get slider values
- /* let inputs = {}
-  for (const input of document.getElementsByTagName('input')) {
-    switch (input.type) {
-    case 'number':
-      inputs[input.id] = input.valueAsNumber
-      break
-    case 'range':
-      inputs[input.id] = input.valueAsNumber
-      break
-    case 'checkbox':
-      inputs[input.id] = input.checked
-      break
-    }
-  }*/
+
   compute()
 }
 
