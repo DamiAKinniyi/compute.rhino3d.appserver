@@ -421,7 +421,7 @@ function onSend(){
          compute()
      }
      
-     reader.readAsDataURL(image.files[0]);
+     //reader.readAsDataURL(image.files[0]);
      
       
       //console.log(filepath)
