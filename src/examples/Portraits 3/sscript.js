@@ -460,6 +460,7 @@ function onCheck(e){
   else if (x==false){
     e.target.setAttribute('checked',"true")
   }
+  compute()
 
 }
 
