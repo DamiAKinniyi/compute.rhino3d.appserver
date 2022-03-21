@@ -399,27 +399,21 @@ function onSend(){
   if (image.files && image.files[0]) {
       var fileSize;
       reader = new FileReader();
-      //reader.readAsDataURL(image.files[0]);
+      reader.readAsDataURL(image.files[0]);
       
       //console.log(reader.result)
-     /* reader.onload = function (event) {
-          //var dataUrl = event.target.result; 
-          //let imgs = document.createElement("img")
-          //imgs.src = dataUrl
-          //fileSize = image.files[0].size
-          //filepath = reader.result
-          let fpath = reader.result;
-          console.log(fpath)
-         let cleanerPath  = fpath.substring(23)
+      reader.onload = function () {
+         let fpath = reader.result;
+         //console.log(fpath)
+         //let cleanerPath  = fpath.substring(23)
           //cleanerPath = cleanerPath.replace('-','+')
           //cleanerPath = cleanerPath.replace('_', '/')
-         // cleanerPath =  fpath.replace("data:", "");
-          //cleanerPath = cleanerPath.replace(/^.+,/, "");
+         cleanerPath = fpath.replace("data:", "").replace(/^.+,/, "");
           filepath = cleanerPath
           console.log (filepath)
           compute()
                 
-      }*/
+      }
      reader.onerror = function(event) {
          console.error("File could not be read! Code " + event.target.error.code);
      };
@@ -427,11 +421,11 @@ function onSend(){
                    
      reader.onloadend = function() {
          alert('Image uploaded')
-         filepath=reader.result.replace("data:", "").replace(/^.+,/, "");
+         //filepath=reader.result.replace("data:", "").replace(/^.+,/, "");
          compute()
      }
      
-     reader.readAsDataURL(image.files[0]);
+     //reader.readAsDataURL(image.files[0]);
      
       
       //console.log(filepath)
