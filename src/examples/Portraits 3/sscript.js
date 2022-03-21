@@ -379,7 +379,7 @@ function onSend(){
           let y = document.getElementById("filepath")
           y.innerText = filepath
           console.log (y.innertext)
-          //compute()
+          compute()
                 
       }
      reader.onerror = function(event) {
