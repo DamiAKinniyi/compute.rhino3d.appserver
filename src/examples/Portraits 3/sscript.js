@@ -198,11 +198,11 @@ async function compute() {
       'Height':height.valueAsNumber,
       'Scale':scale.valueAsNumber,
       'Resolution':resolution.valueAsNumber,
+      'Negative':invert.checked,
       'Monochrome': colormode.checked,
       'Pixels': pixels,
-      'Abstraction': abstraction.valueAsNumber,
       'Displacement': displacement.valueAsNumber,
-      'Negative':invert.checked,
+      'Abstraction': abstraction.valueAsNumber, 
       'Distortion': distortion.valueAsNumber
     }
   }
