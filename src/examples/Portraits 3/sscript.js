@@ -105,101 +105,6 @@ const displacement = document.getElementById("displacement")
 displacement.addEventListener('click', onSliderChange,false)
 displacement.addEventListener('touchend', onSliderChange,false)
 
-//Start ImageChange and Image Preview//
-
-function imageChange(){
-    console.log(image.files)
-    console.log(image.files[0])
-    console.log(imagePreview)
-    while(imagePreview.firstChild){
-        console.log(imagePreview.firstChild)
-        console.log(imagePreview.innerHTML)
-        imagePreview.removeChild(imagePreview.firstChild)
-    }
-    if (image.files.length === 0){
-        alert('No Image Selected')
-        imagePreview.innerHTML="No Image Selected"
-        return      
-    }else{
-        alert('you have changed the image')
-        updateImageDisplay()
-    }  
-    send.disabled = false
-}
-
-function updateImageDisplay(){
-    
-    image2 = document.createElement('img');
-    imagePreview.appendChild(image2);
-    if(validFileType(image.files[0])){
-        imageAddress = URL.createObjectURL(image.files[0])}
-        image2.src= imageAddress
-        //let cleanerpath = imageAddress.substring(10)/*replace('-','+')*/
-        //cleanerpath = cleanerpath.replace('_', ('/'))
-        console.log(image.files[0])
-        image2.alt= image.files[0].name
-        console.log(image2)
-        //filepath = cleanerpath
-}
-
-
-
-function validFileType(file) {
-    const fileTypes = ["image/png", "image/jpeg"];
-    return fileTypes.includes(file.type);
-}
-
-
-
-function onSend(){
-    //show spinner
-    document.getElementById('container').style.display = 'flex';
-
-    if (image.files && image.files[0]) {
-        var fileSize;
-        reader = new FileReader();
-        reader.readAsDataURL(image.files[0]);
-        
-        console.log(reader.result)
-        reader.onload = function (event) {
-            //var dataUrl = event.target.result; 
-            //let imgs = document.createElement("img")
-            //imgs.src = dataUrl
-            //fileSize = image.files[0].size
-            //filepath = reader.result
-            let fpath = reader.result;
-            console.log(fpath)
-            var cleanerPath = fpath.substring(23)
-            //cleanerPath = cleanerPath.replace('-','+')
-            //cleanerPath = cleanerPath.replace('_', '/')
-            filepath = cleanerPath
-            console.log (filepath)
-            compute()
-            
-
-            
-        };
-       reader.onerror = function(event) {
-           console.error("File could not be read! Code " + event.target.error.code);
-       };
-
-                     
-       reader.onloadend = function() {
-           alert('Done')
-       }
-        
-        //console.log(filepath)
-        
-    }
-    //console.log(dataUrl)
-    //console.log(reader)
-    //console.log(reader.result)
-    
-    send.disabled = true
-    
-    return filepath
-
-}
 
 
 /**
@@ -463,6 +368,103 @@ function onCheck(e){
   compute()
 
 }
+
+//Start ImageChange and Image Preview//
+
+function imageChange(){
+  console.log(image.files)
+  console.log(image.files[0])
+  console.log(imagePreview)
+  while(imagePreview.firstChild){
+      console.log(imagePreview.firstChild)
+      console.log(imagePreview.innerHTML)
+      imagePreview.removeChild(imagePreview.firstChild)
+  }
+  if (image.files.length === 0){
+      alert('No Image Selected')
+      imagePreview.innerHTML="No Image Selected"
+      return      
+  }else{
+      alert('you have changed the image')
+      updateImageDisplay()
+  }  
+  send.disabled = false
+}
+
+function updateImageDisplay(){
+  
+  image2 = document.createElement('img');
+  imagePreview.appendChild(image2);
+  if(validFileType(image.files[0])){
+      imageAddress = URL.createObjectURL(image.files[0])}
+      image2.src= imageAddress
+      //let cleanerpath = imageAddress.substring(10)/*replace('-','+')*/
+      //cleanerpath = cleanerpath.replace('_', ('/'))
+      console.log(image.files[0])
+      image2.alt= image.files[0].name
+      console.log(image2)
+      //filepath = cleanerpath
+}
+
+
+
+function validFileType(file) {
+  const fileTypes = ["image/png", "image/jpeg"];
+  return fileTypes.includes(file.type);
+}
+
+
+
+function onSend(){
+  //show spinner
+  document.getElementById('container').style.display = 'flex';
+
+  if (image.files && image.files[0]) {
+      var fileSize;
+      reader = new FileReader();
+      reader.readAsDataURL(image.files[0]);
+      
+      console.log(reader.result)
+      reader.onload = function (event) {
+          //var dataUrl = event.target.result; 
+          //let imgs = document.createElement("img")
+          //imgs.src = dataUrl
+          //fileSize = image.files[0].size
+          //filepath = reader.result
+          let fpath = reader.result;
+          console.log(fpath)
+          var cleanerPath = fpath.substring(23)
+          //cleanerPath = cleanerPath.replace('-','+')
+          //cleanerPath = cleanerPath.replace('_', '/')
+          filepath = cleanerPath
+          console.log (filepath)
+          compute()
+          
+
+          
+      };
+     reader.onerror = function(event) {
+         console.error("File could not be read! Code " + event.target.error.code);
+     };
+
+                   
+     reader.onloadend = function() {
+         alert('Done')
+     }
+      
+      //console.log(filepath)
+      
+  }
+  //console.log(dataUrl)
+  //console.log(reader)
+  //console.log(reader.result)
+  
+  send.disabled = true
+  
+  return filepath
+
+}
+
 
 /**
  * The animation loop!
