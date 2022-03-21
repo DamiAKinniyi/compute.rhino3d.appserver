@@ -380,8 +380,9 @@ function onSend(){
           console.log(fileSize)
           let fpath = reader.result;
           console.log(fpath)
-          filepath=fpath.substring(22);
-          //filepath = fpath.replace("data:", "").replace(/^.+,/, "");
+          //filepath=fpath.substring(23);
+          console.log(filepath)
+          filepath = fpath.replace("data:", "").replace(/^.+,/, "");
           //let y = document.getElementById("filepath")
            compute()
                 
