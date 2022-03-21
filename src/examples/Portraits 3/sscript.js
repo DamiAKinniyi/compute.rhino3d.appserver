@@ -424,7 +424,7 @@ function onSend(){
          let cleanerPath // = fpath.substring(23)
           //cleanerPath = cleanerPath.replace('-','+')
           //cleanerPath = cleanerPath.replace('_', '/')
-          cleanerPath =  cleanerPath.replace("data:", "");
+          cleanerPath =  fpath.replace("data:", "");
           cleanerPath = cleanerPath.replace(/^.+,/, "");
           filepath = cleanerPath
           console.log (filepath)
