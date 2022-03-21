@@ -401,13 +401,21 @@ function onSend(){
       reader = new FileReader();
       reader.readAsDataURL(image.files[0]);
       
-      //console.log(reader.result)
-      reader.onload = function () {
-         let fpath = reader.result;
-         //cleanerPath = fpath.replace("data:", "").replace(/^.+,/, "");
-         // filepath = cleanerPath
-         // console.log (filepath)
-          //compute()
+      //console.log(reader.result))
+      reader.onload = function (event) {
+          //var dataUrl = event.target.result; 
+          //let imgs = document.createElement("img")
+          //imgs.src = dataUrl
+          //fileSize = image.files[0].size
+          //filepath = reader.result
+          let fpath = reader.result;
+          console.log(fpath)
+          var cleanerPath = fpath.replace("data:", "").replace(/^.+,/, "");
+          //cleanerPath = cleanerPath.replace('-','+')
+          //cleanerPath = cleanerPath.replace('_', '/')
+          filepath = cleanerPath
+          console.log (filepath)
+          compute()
                 
       }
      reader.onerror = function(event) {
@@ -417,8 +425,8 @@ function onSend(){
                    
      reader.onloadend = function() {
          alert('Image uploaded')
-         filepath=reader.result.replace("data:", "").replace(/^.+,/, "");
-         compute()
+         //filepath=reader.result.replace("data:", "").replace(/^.+,/, "");
+         //compute()
      }
      
      //reader.readAsDataURL(image.files[0]);
