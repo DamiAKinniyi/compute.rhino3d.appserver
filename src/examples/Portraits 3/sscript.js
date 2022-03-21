@@ -205,7 +205,7 @@ async function compute() {
 
 
   // construct url for GET /solve/definition.gh?name=value(&...)
-  const url = new URL('/solve/' + data.definition, window.location.origin)
+  /*const url = new URL('/solve/' + data.definition, window.location.origin)
   Object.keys(data.inputs).forEach(key => url.searchParams.append(key, data.inputs[key]))
   console.log(url.toString())
   
@@ -223,8 +223,8 @@ async function compute() {
 
   } catch(error) {
     console.error(error)
-  }
-  /*showSpinner(true);
+  }*/
+  showSpinner(true);
   
   
 
@@ -246,7 +246,7 @@ async function compute() {
       collectResults(responseJson);
     } catch (error) {
       console.error(error);
-    }*/
+    }
 
 }
 
@@ -446,9 +446,7 @@ function onSend(){
           filepath = cleanerPath
           console.log (filepath)
           compute()
-          
-
-          
+                
       };
      reader.onerror = function(event) {
          console.error("File could not be read! Code " + event.target.error.code);
@@ -456,7 +454,7 @@ function onSend(){
 
                    
      reader.onloadend = function() {
-         alert('Done')
+         alert('Image uploaded')
      }
       
       //console.log(filepath)
