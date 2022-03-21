@@ -99,6 +99,8 @@ abstraction.addEventListener('touchend', onSliderChange,false)
 
 //Start ImageChange and Image Preview//
 
+let send = document.getElementById('submit');
+send.addEventListener("click", onSend);
 
 function imageChange(){
     console.log(image.files)
@@ -142,8 +144,7 @@ function validFileType(file) {
     return fileTypes.includes(file.type);
 }
 
-let send = document.getElementById('submit');
-send.addEventListener("click", onSend);
+
 
 function onSend(){
     //show spinner
