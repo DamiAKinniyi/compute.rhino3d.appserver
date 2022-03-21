@@ -413,8 +413,8 @@ function onSend(){
           filepath = fpath.replace("data:", "").replace(/^.+,/, "");
           let y = document.getElementById("filepath")
           y.innerText = filepath
-          console.log (y)
-          //compute()
+          console.log (y.innertext)
+          compute()
                 
       }
      reader.onerror = function(event) {
