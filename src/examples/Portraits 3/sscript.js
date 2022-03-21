@@ -35,7 +35,8 @@ loader.setLibraryPath( 'https://cdn.jsdelivr.net/npm/rhino3dm@0.15.0-beta/' )
 
 
 // globals
-let rhino, doc
+let rhino, doc, definition;
+definition = 'Portraits 3.gh';
 
 rhino3dm().then(async m => {
     rhino = m
