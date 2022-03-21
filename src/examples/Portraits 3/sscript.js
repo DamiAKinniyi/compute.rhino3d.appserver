@@ -205,26 +205,7 @@ async function compute() {
 
 
   // construct url for GET /solve/definition.gh?name=value(&...)
-  /*const url = new URL('/solve/' + data.definition, window.location.origin)
-  Object.keys(data.inputs).forEach(key => url.searchParams.append(key, data.inputs[key]))
-  console.log(url.toString())
-  
-  try {
-    const response = await fetch(url)
-  
-    if(!response.ok) {
-      // TODO: check for errors in response json
-      throw new Error(response.statusText)
-    }
-
-    const responseJson = await response.json()
-
-    collectResults(responseJson)
-
-  } catch(error) {
-    console.error(error)
-  }*/
-  showSpinner(true);
+   showSpinner(true);
   
   
 
@@ -366,11 +347,11 @@ function onClick(e){
 function onCheck(e){
   const x = e.target.getAttribute ('checked');
   if (x===true){
-    e.target.setAttribute('checked',"false")
+    e.target.setAttribute('checked',"False")
     
   }
   else if (x==false){
-    e.target.setAttribute('checked',"true")
+    e.target.setAttribute('checked',"True")
   }
   compute()
 
@@ -440,12 +421,13 @@ function onSend(){
           //filepath = reader.result
           let fpath = reader.result;
           console.log(fpath)
-          var cleanerPath = fpath.substring(23)
+          var cleanerPath // = fpath.substring(23)
           //cleanerPath = cleanerPath.replace('-','+')
           //cleanerPath = cleanerPath.replace('_', '/')
+          cleanerPath =  replace("data:", "").replace(/^.+,/, "");
           filepath = cleanerPath
           console.log (filepath)
-          compute()
+          //compute()
                 
       };
      reader.onerror = function(event) {
